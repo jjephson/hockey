@@ -169,7 +169,7 @@
 	},
 	{
 		"id":15,
-		"card_rank": "common",
+		"card_rank": "uncommon",
 		"player": "Daniel Brodin",
 		"picture": "victorandren2.png",
 		"rating": 87,
@@ -205,7 +205,7 @@
 	},
 	{
 		"id":18,
-		"card_rank": "common",
+		"card_rank": "uncommon",
 		"player": "Linus Klasen",
 		"picture": "victorandren2.png",
 		"rating": 87,
@@ -217,7 +217,7 @@
 	},
 	{
 		"id":19,
-		"card_rank": "common",
+		"card_rank": "uncommon",
 		"player": "Marcus Krüger",
 		"picture": "victorandren2.png",
 		"rating": 87,
@@ -229,7 +229,7 @@
 	},
 	{
 		"id":20,
-		"card_rank": "common",
+		"card_rank": "uncommon",
 		"player": "Olle Liss",
 		"picture": "victorandren2.png",
 		"rating": 87,

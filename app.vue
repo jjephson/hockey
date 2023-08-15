@@ -1,6 +1,6 @@
 <template>
   <main>
-    <section v-for="card in cards" :key="card.id" class="card">
+    <section v-for="card in cards" :key="card.id" v-bind:class="` ${card.card_rank === 'uncommon' ? 'card-gold' : 'card' }`">
       <section>
         <div class="top">
 			<nuxt-picture :src="`/players/${card.picture}`" :alt="`${card.player}`" class="picture" />
@@ -27,7 +27,7 @@
         cards: userData,
       };
     },
-  };
+  }
 
 </script>
 
@@ -36,7 +36,7 @@
 		display: flex;
 		flex-wrap: wrap;
 	}
-		.card {
+	.card {
 		flex: 0 0 250px;
 		margin: 1rem;
 		border-radius: 7px;
@@ -82,5 +82,13 @@
 		padding: 0 0 10px;
 		text-transform: uppercase;
 		font-weight: bold;
+	}
+	.card-gold {
+		flex: 0 0 250px;
+		margin: 1rem;
+		border-radius: 7px;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+		background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+                radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
 	}
 </style>
