@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   css: ['~/assets/global.css'],
   modules: [
     '@nuxt/image',
+    '@nuxtjs/supabase',
   ],
   devtools: {
     enabled: true
