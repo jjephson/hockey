@@ -1,26 +1,28 @@
 <template>
 	<main>
-		<section v-for="card in cards" :key="card.id" v-bind:class="` ${card.card_rank === 'uncommon' ? 'card-gold' : 'card' }`">
 		<section>
-			<div class="top">
-				<nuxt-picture :src="`/players/${card.picture}`" :alt="`${card.player}`" class="picture" />
-				<nuxt-picture :src="`/logos/${card.clublogo}`" :alt="`${card.club}`" class="logo"/>
-				<h2><span>{{ card.player }}</span></h2>
-			</div>
-			<section class="bottom">
-				<div>Position <div>{{ card.position }}</div></div>
-				<div>Rating <div class="rating">{{ card.rating }}</div></div>
-				<div>Land <div class="country">{{ card.country }}</div></div>
-			</section>
-		</section>
+			<button @click="generateRandomCards">Generate a pack of cards</button>
+			<ul>
+				<li v-for="cards in randomCards" :key="cards.id" v-bind:class="` ${cards.card_rank === 'uncommon' ? 'card-gold' : 'card' }`">
+					<section>
+						<div class="top">
+							<nuxt-picture :src="`/players/${cards.picture}`" :alt="`${cards.player}`" class="picture" />
+							<nuxt-picture :src="`/logos/${cards.clublogo}`" :alt="`${cards.club}`" class="logo"/>
+							<h2><span>{{ cards.player }}</span></h2>
+						</div>
+						<section class="bottom">
+							<div>Position <div>{{ cards.position }}</div></div>
+							<div>Rating <div class="rating">{{ cards.rating }}</div></div>
+							<div>Land <div class="country">{{ cards.country }}</div></div>
+						</section>
+					</section>
+				</li>
+			</ul>
 		</section>
 	</main>
 </template>
 
 <script setup>
-	import userData from '../assets/dif.json';
-	const cards = userData;
-
 	const user = useSupabaseUser();
 	const router = useRouter();
 	definePageMeta({
@@ -31,12 +33,34 @@
 			await router.push("/login");
 		}
 	});
+
+	// Random cards
+	import { ref, onMounted } from 'vue';
+	const data = ref([]);
+	const randomCards = ref([]);
+
+	function pickRandomCards() {
+		const shuffledData = [...data.value].sort(() => Math.random() - 0.5);
+		randomCards.value = shuffledData.slice(0, 5);
+	}
+
+	function generateRandomCards() {
+		pickRandomCards();
+	}
+
+	onMounted(async () => {
+		const response = await fetch('../assets/dif.json');
+		data.value = await response.json();
+	});
 </script>
 
 <style scoped>
 	main {
 		display: flex;
 		flex-wrap: wrap;
+	}
+	ul {
+		display: flex;
 	}
 	.card {
 		flex: 0 0 250px;
@@ -97,4 +121,10 @@
 	.card-gold h2 {
 		background: none;
 	}
+
+	button {
+        padding: 5px;
+        border: 1px solid gray;
+        background: #a1a1a1;
+    }    
 </style>
