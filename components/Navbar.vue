@@ -1,14 +1,12 @@
 <template>
 	<nav>
-		<div>
-			<NuxtLink v-if="user" @click="logOut()">Log Out</NuxtLink>
-		</div>
-		<div>
-			<NuxtLink v-if="!user" to="/login">Login</NuxtLink>
-		</div>
-		<div>
-			<NuxtLink v-if="!user" to="/register">Register</NuxtLink>
-		</div>
+		<ul>
+			<li><NuxtLink to="/">Start</NuxtLink></li>
+			<li><NuxtLink v-if="user" to="/profile">Profile</NuxtLink></li>
+			<li><NuxtLink v-if="user" @click="logOut()">Log Out</NuxtLink></li>
+			<li><NuxtLink v-if="!user" to="/login">Login</NuxtLink></li>
+			<li><NuxtLink v-if="!user" to="/register">Register</NuxtLink></li>
+		</ul>
 	</nav>
 </template>
 
@@ -28,11 +26,27 @@
 </script>
 
 <style scoped>
-	nav {
+	nav ul {
 		display: flex;
+		flex-direction: row;
 		justify-content: flex-end;
+		font-size: 16px;
+		font-weight: bold;
+	
 	}
-	nav a:link {
+	nav li {
+		margin: 0 15px 0 0;
+	}
+	nav a, 
+	nav a:link,
+	nav a:visited {
+		color: black;
+		text-decoration: none;
+	}
+	nav a:active, 
+	nav a:hover,
+	nav a:focus {
 		text-decoration: underline;
+		cursor: pointer;
 	}
 </style>

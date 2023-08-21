@@ -1,7 +1,6 @@
 <template>
 	<main>
 		<section>
-			<button @click="generateRandomCards">Generate a pack of cards</button>
 			<ul>
 				<li v-for="cards in randomCards" :key="cards.id" v-bind:class="` ${cards.card_rank === 'uncommon' ? 'card-gold' : 'card' }`">
 					<section>
@@ -18,6 +17,7 @@
 					</section>
 				</li>
 			</ul>
+			<button @click="generateRandomCards">Generate a pack of cards</button>
 		</section>
 	</main>
 </template>
